@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'maven-publish'
 
 group 'me.hypherionmc'
-version '1.0'
+version '1.1'
 
 repositories {
     mavenLocal()
@@ -21,12 +21,24 @@ dependencies {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifact shadowJar
+            // add all the jars that should be included when publishing to maven
+            artifact(shadowJar) {
+                builtBy shadowJar
+            }
+
         }
     }
+
+    // select the repositories you want to publish to
     repositories {
+        // uncomment to publish to the local maven
+        // mavenLocal()
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url System.getenv('MAVEN_URL')
+            credentials {
+                username System.getenv('MAVEN_USER')
+                password System.getenv('MAVEN_PASS')
+            }
         }
     }
 }

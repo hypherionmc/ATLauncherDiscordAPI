@@ -12,13 +12,15 @@ import okhttp3.Response;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ATLauncherAPIClient {
 
     /* Private API Variables */
     private final OkHttpClient client = new OkHttpClient().newBuilder().callTimeout(1,TimeUnit.MINUTES).connectTimeout(1,TimeUnit.MINUTES).readTimeout(1,TimeUnit.MINUTES).build();
     private final String apiurl = "https://api.atlauncher.com/v1/";
-
+    private final Logger logger = Logger.getLogger("AT-API");
     /***
      * Get info about a modpack
      * @param safename - The name of the modpack to search for (Case Sensitive and NO SPACES ALLOWED)
@@ -35,7 +37,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
@@ -57,7 +60,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
@@ -77,7 +81,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
@@ -97,7 +102,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
@@ -117,7 +123,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
@@ -137,7 +144,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
@@ -157,7 +165,8 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, ex.getMessage());
+            ex.printStackTrace();
         }
         return Optional.empty();
     }
