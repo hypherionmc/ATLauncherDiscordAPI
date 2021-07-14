@@ -25,7 +25,7 @@ The latest release of this library is hosted on my Maven and can be used with Gr
 To use the Library in your project, add `https://maven.hypherionmc.me` as a repository.
 
 Add the following to your build.gradle file under dependencies:
-`implementation 'me.hypherionmc:ATLauncherDiscordAPI:2.0'`
+`implementation 'me.hypherionmc:ATLauncherDiscordAPI:2.0.1'`
 
 Basic example for using this library
 

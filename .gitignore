@@ -2,3 +2,4 @@
 .idea
 build
 src/test
+me/hypherionmc/atlauncherapi/TestClient.java

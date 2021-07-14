@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class ATLauncherAPIClient {
 
     /* Private API Variables */
-    private final OkHttpClient client = new OkHttpClient().newBuilder().callTimeout(1, TimeUnit.MINUTES).connectTimeout(1, TimeUnit.MINUTES).readTimeout(1, TimeUnit.MINUTES).build();
+    private final OkHttpClient client;
     private final String apiurl = "https://api.atlauncher.com/v1/";
     private final Logger logger = Logger.getLogger("AT-API");
     private final UserAgentInterceptor userAgentInterceptor;
@@ -26,7 +26,12 @@ public class ATLauncherAPIClient {
      */
     public ATLauncherAPIClient(String userAgent) {
         userAgentInterceptor = new UserAgentInterceptor(userAgent);
-        client.networkInterceptors().add(userAgentInterceptor);
+        client = new OkHttpClient().newBuilder()
+                .callTimeout(1, TimeUnit.MINUTES)
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
+                .addNetworkInterceptor(userAgentInterceptor)
+                .build();
     }
 
     /***
