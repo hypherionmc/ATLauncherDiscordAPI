@@ -25,12 +25,14 @@ The latest release of this library is hosted on my Maven and can be used with Gr
 To use the Library in your project, add `https://maven.hypherionmc.me` as a repository.
 
 Add the following to your build.gradle file under dependencies:
-`implementation 'me.hypherionmc:ATLauncherDiscordAPI:1.1'`
+`implementation 'me.hypherionmc:ATLauncherDiscordAPI:2.0'`
 
 Basic example for using this library
 
 ```java
-ATLauncherAPIClient apiClient = new ATLauncherAPIClient(); // Create a new APIClient
+// Create a new APIClient and specify the user agent for your app.
+// The useragent is now a requirement by ATLauncher
+ATLauncherAPIClient apiClient = new ATLauncherAPIClient("YourAppName user@gmail.com");
 
 Optional<PackResult> packOptional = apiClient.getPackInfo("MysticsCubicChunksModpack"); // Retrieve the info of a single pack
 
@@ -41,4 +43,4 @@ packOptional.ifPresent(pack -> { // Check if the API Call succeeded
 });
 ```
 
-Need more help? Join my [discord server](https://discord.gg/vxaQdVK) 
+Need more help? Join my [discord server](https://discord.gg/PdVnXf9) 

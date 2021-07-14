@@ -1,10 +1,7 @@
 package me.hypherionmc.atlauncherapi;
 
 import com.google.gson.Gson;
-import me.hypherionmc.atlauncherapi.apiobjects.PackArrayResult;
-import me.hypherionmc.atlauncherapi.apiobjects.PackResult;
-import me.hypherionmc.atlauncherapi.apiobjects.PackVersionResult;
-import me.hypherionmc.atlauncherapi.apiobjects.SimplePackResult;
+import me.hypherionmc.atlauncherapi.apiobjects.*;
 import okhttp3.CacheControl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,9 +15,20 @@ import java.util.logging.Logger;
 public class ATLauncherAPIClient {
 
     /* Private API Variables */
-    private final OkHttpClient client = new OkHttpClient().newBuilder().callTimeout(1,TimeUnit.MINUTES).connectTimeout(1,TimeUnit.MINUTES).readTimeout(1,TimeUnit.MINUTES).build();
+    private final OkHttpClient client = new OkHttpClient().newBuilder().callTimeout(1, TimeUnit.MINUTES).connectTimeout(1, TimeUnit.MINUTES).readTimeout(1, TimeUnit.MINUTES).build();
     private final String apiurl = "https://api.atlauncher.com/v1/";
     private final Logger logger = Logger.getLogger("AT-API");
+    private final UserAgentInterceptor userAgentInterceptor;
+
+    /***
+     * Create a new APIClient object
+     * @param userAgent - This should be the Name of your app and contact information. For example "MyCoolApp myuser@gmail.com"
+     */
+    public ATLauncherAPIClient(String userAgent) {
+        userAgentInterceptor = new UserAgentInterceptor(userAgent);
+        client.networkInterceptors().add(userAgentInterceptor);
+    }
+
     /***
      * Get info about a modpack
      * @param safename - The name of the modpack to search for (Case Sensitive and NO SPACES ALLOWED)
@@ -102,8 +110,9 @@ public class ATLauncherAPIClient {
                 throw new Exception("Could not retrieve result from API");
             }
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage());
             ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
+
         }
         return Optional.empty();
     }
