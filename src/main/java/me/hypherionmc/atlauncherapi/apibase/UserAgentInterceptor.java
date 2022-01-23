@@ -1,4 +1,4 @@
-package me.hypherionmc.atlauncherapi.apiobjects;
+package me.hypherionmc.atlauncherapi.apibase;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
