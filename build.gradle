@@ -5,7 +5,8 @@ plugins {
 apply plugin: 'maven-publish'
 
 group 'me.hypherionmc'
-version '2.0.1'
+version '2.0.2'
+archivesBaseName = "ATLauncherAPI"
 
 repositories {
     mavenLocal()
@@ -13,9 +14,8 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'com.google.code.gson:gson:2.8.2'
-    implementation("com.squareup.okhttp3:okhttp:4.8.0")
+    compile 'com.google.code.gson:gson:2.8.9'
+    implementation('com.squareup.okhttp3:okhttp:4.9.3')
 }
 
 configurations {
@@ -35,20 +35,15 @@ shadowJar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            // add all the jars that should be included when publishing to maven
             artifact(shadowJar) {
                 builtBy shadowJar
             }
-
         }
     }
 
-    // select the repositories you want to publish to
     repositories {
-        // uncomment to publish to the local maven
-        // mavenLocal()
         maven {
-            url "https://maven.hypherionmc.me"
+            url "https://maven.firstdarkdev.xyz/releases"
             credentials {
                 username System.getenv('MAVEN_USER')
                 password System.getenv('MAVEN_PASS')
